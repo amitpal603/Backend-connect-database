@@ -26,9 +26,9 @@ const getProducts = async(req,res) => {
 }
 
 const createProducts = async(req,res) => {
-    const {itemName,price,discription,title} = req.body
+    const {itemName,price,Description,title} = req.body
     try {
-        const newProducts = new Shop({itemName,price,discription,title})
+        const newProducts = new Shop({itemName,price,Description,title})
         await newProducts.save()
 
         if(!newProducts){
@@ -50,10 +50,10 @@ const createProducts = async(req,res) => {
 
 const updataProducts = async(req,res) => {
     const {id} = req.params
-    const {itemName,price,discription,title} = req.body
+    const {itemName,price,Description,title} = req.body
 
     try {
-        const UpdataProduct = await Shop.findByIdAndUpdate(id,{itemName,price,discription,title},{new:true})
+        const UpdataProduct = await Shop.findByIdAndUpdate(id,{itemName,price,Description,title},{new:true})
 
         if(!UpdataProduct){
             res.json({
@@ -79,9 +79,9 @@ const updataProducts = async(req,res) => {
 const DeleteProduct = async(req,res) => {
     const {id} = req.params
     try {
-        const deletePruduct = await Shop.findByIdAndDelete(id)
+        const deleteProduct = await Shop.findByIdAndDelete(id)
 
-        if(!deletePruduct){
+        if(!deleteProduct){
             res.json({
                 message:'Product not find and not deleted'
             })
@@ -90,7 +90,7 @@ const DeleteProduct = async(req,res) => {
         res.status(200).json({
             success:true,
             message:"Deleted product successfully..",
-            product:deletePruduct
+            product:deleteProduct
         })
     } catch (error) {
          console.log(error.message);
