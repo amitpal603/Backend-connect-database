@@ -31,12 +31,10 @@ const createProducts = async(req,res) => {
         const newProducts = new Shop({itemName,price,Description,title})
         await newProducts.save()
 
-        if(!newProducts){
             res.status(201).json({
                 message:'created new Product',
                 product: newProducts
             })
-        }
     } catch (error) {
         console.log(error.message);
         
